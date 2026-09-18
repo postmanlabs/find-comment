@@ -13,6 +13,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -36,6 +37,7 @@ jobs:
   test:
     needs: [build]
     runs-on: ubuntu-latest
+    timeout-minutes: 8
     strategy:
       matrix:
         target: [built, committed]
@@ -164,6 +166,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: [test]
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
       - uses: actions/download-artifact@v8
