@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: package.json
@@ -41,6 +43,8 @@ jobs:
         target: [built, committed]
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - if: matrix.target == 'built' || github.event_name == 'pull_request'
         uses: actions/download-artifact@v8
         with:
@@ -166,6 +170,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/download-artifact@v8
         with:
           name: dist
